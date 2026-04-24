@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply & Renew - Kalinga Senior Portal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: serif;
+    }
+
+    /* Header Container */
+    .header { display: flex; justify-content: space-between; align-items: center; min-height: 80px; padding: 10px 30px; background: rgba(230, 239, 250, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; width: 100%; z-index: 1001; box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+    .logo-section { display: flex; align-items: center; flex-shrink: 0; }
+     .logo { width: 60px; height: 60px; margin-right: 15px;
+    }
+    .title { font-size: 24px; font-weight: bold; line-height: 1.1; }
+    .kalinga, .senior { color: green; }
+    .portal { color: #0d47a1; }
+  
+    /* Horizontal Navigation */
+    .nav-links { display: flex; gap: 10px; margin: 0 20px; list-style: none; align-items: center;
+    }
+    .nav-links a,   .dropbtn { text-decoration: none; color: #3C0061; font-weight: 500; font-size: 15px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px; transition: color 0.3s; background: none; border: none; cursor: pointer; font-family: serif;
+    }
+    .nav-links a i, .dropbtn i { font-size: 18px; color: #0d47a1; }
+    .nav-links a:hover, .dropdown:hover .dropbtn { color: green; }
+
+    /* Dropdown Menu Logic */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { display: none; position: absolute; right: 0; background-color: white; min-width: 180px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; border-radius: 8px; overflow: hidden; margin-top: 10px; }
+   .dropdown-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; flex-direction: row; justify-content: flex-start; gap: 10px; text-align: left; }
+    .dropdown-content a i { font-size: 14px; width: 20px; }
+    .dropdown-content a:hover { background-color: #f1f1f1; color: #0d47a1; }
+    .dropdown:hover .dropdown-content { display: block; }
+
+    .header-right { display: flex; align-items: center; flex-shrink: 0; }
+    .login {color: #3C0061; text-decoration: none;padding: 10px 20px;font-size: 16px;font-weight: 600;background: rgba(230, 239, 250, 0.95);border: 2px solid #3C0061;border-radius: 25px;transition: all 0.3s ease;}
+    .login:hover {background: #3C0061;color: white;}
+
+    /* Responsive adjustments */
+    @media (max-width: 850px) {
+      .header {flex-direction: column;padding: 15px;}
+      .nav-links {margin: 15px 0;gap: 10px;}
+    }
+  
+  /* Hero */
+    .hero {height: 43.375vw;margin-top: 0;background: url('bg.jpg') center/cover;display: flex;flex-direction: column;justify-content: center;align-items: flex-start;color: white;padding: 40px 60px;}
+    .hero h2 {font-size: 36px;color: #0d47a1;margin: 5px 0;}
+    .hero p {font-size: 36px;color: green;margin: 5px 0;}
+  
+  /* Mobile Styles */
+    @media (max-width: 768px){
+      .hero {height: 20vh;min-height: 100px;margin-top: 0;padding: 40px 30px;align-items: flex-start;text-align: left;}
+      .hero h2 {font-size: 20px;margin: 8px 0;text-align: left;}
+      .hero p {font-size: 20px;margin: 8px 0;text-align: left;}
+    }
+  
+      @media (max-width: 360px) {
+      .hero h2 { font-size: 24px; }
+      .hero p { font-size: 20px; }
+      .title { font-size: 20px; }
+    }
+  
+  .footer {width: 100%;font-family: serif;}
+/* Main Footer */
+.footer-main {background: #0d47a1;padding: 45px 24px 48px;}
+.footer-container {max-width: 1200px;margin: 0 auto;display: grid;grid-template-columns: 2fr 1fr 1fr 1.5fr;gap: 48px;}
+
+/* Brand */
+.footer-brand {display: flex;flex-direction: column;gap: 20px;}
+.footer-brand-header {display: flex;align-items: center;gap: 14px;}
+.footer-logo-img {width: 35px;height: 35px;object-fit: contain;}
+.footer-brand-text {font-size: 25px;font-weight: 700;line-height: 1.2;}
+.footer-brand-kalinga, .footer-brand-senior, .footer-brand-portal { color: rgba(230, 239, 250, 0.95);}
+.footer-description {color: rgba(255, 255, 255, 0.7);font-size: 16px;line-height: 1.6;}
+
+/* Social */
+.footer-social {display: flex;gap: 12px;}
+.footer-social-link {width: 50px;height: 50px;border-radius: 50%;background: rgba(255, 255, 255, 0.08);color: #fff;display: flex;align-items: center;justify-content: center;text-decoration: none;transition: 0.2s;}
+.footer-social-link:hover {background: rgba(255, 255, 255, 0.18);transform: scale(1.1);}
+
+/* Headings */
+.footer-heading {color: #fff;font-size: 20px;font-weight: 600;margin-bottom: 20px;}
+
+/* Links */
+.footer-link-list {list-style: none;padding: 0;display: flex;flex-direction: column;gap: 8px;}
+.footer-link {color: rgba(255, 255, 255, 0.7);text-decoration: none;transition: 0.2s;}
+.footer-link:hover {color: #fff;}
+
+/* Contact */
+.footer-contact-list {list-style: none;padding: 0;display: flex;flex-direction: column;gap: 12px;}
+.footer-contact-item {display: flex;gap: 10px;}
+.footer-contact-icon {color: #3C0061;}
+.footer-contact-text {color: rgba(255, 255, 255, 0.7);}
+
+/* Divider */
+.footer-divider {max-width: 1200px;margin: auto;height: 1px;background: black;}
+
+/* Copyright */
+.footer-copyright {background: rgba(230, 239, 250, 0.95);padding: 20px;text-align: center;color: #3C0061;font-size: 15px;}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {grid-template-columns: 1fr;gap: 40px;}
+}
+  
+  
+  .container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+
+  .form-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-top: 5px solid #0d47a1;
+  }
+
+  .form-header {
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    font-size: 18px;
+  }
+
+  /* Dropdown styling */
+  select {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #0d47a1;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #f0f7ff;
+    cursor: pointer;
+  }
+
+  input[type="text"], input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  .upload-area {
+    border: 2px dashed #0d47a1;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    background: #f8f9fa;
+  }
+
+  .submit-btn {
+    background: green;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+  }
+
+  .submit-btn:hover { background: #0d47a1; }
+
+  .doc-info {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+  }
+  
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo-section">
+      <img src="logo.png" class="logo" alt="Kalinga Logo">
+      <h1 class="title">
+        <span class="kalinga">Kalinga</span><br>
+        <span class="senior">Senior</span> 
+        <span class="portal">Portal</span>
+      </h1>
+    </div>
+
+    <nav class="nav-links">
+      <a href="store.html"><i class="fas fa-shield-alt"></i><span>Secure Storage</span></a>
+      <a href="apply.html"><i class="fas fa-file-contract"></i><span>Apply & Renew</span></a>
+      <a href="pay.html"><i class="fas fa-credit-card"></i><span>Pay Online</span></a>
+      <a href="dis.html"><i class="fas fa-gift"></i><span>Discounts & Benefits</span></a>
+      <a href="faq.html"><i class="fas fa-question-circle"></i><span>FAQ & Guides</span></a>
+      
+      <div class="dropdown">
+        <button class="dropbtn">
+          <i class="fas fa-ellipsis-h"></i>
+          <span>More</span>
+        </button>
+        <div class="dropdown-content">
+          <a href="about.html"><i class="fas fa-envelope"></i> About us</a>
+          <a href="contact.html"><i class="fas fa-info-circle"></i> Contact Us</a>
+          <a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a>
+          <a href="acc.html"><i class="fas fa-user-circle"></i> Account</a>
+          <a href="setting.html"><i class="fas fa-cog"></i> Settings</a>
+        </div>
+      </div>
+    </nav>
+    <div class="header-right">
+      <a href="login.html" class="login">Mag-login</a>
+    </div>
+  </header>
+  
+  <section class="hero">
+    <h2>Your Documents.</h2>
+    <p><b>Our Care.</b></p>
+    <h2>Always With You.</h2>
+  </section>
+  
+  <div class="container">
+  <div class="form-card">
+    <div class="form-header">
+      <h2 style="font-size:32px; color:#0d47a1"><i class="fas fa-file-signature"></i> Application & Renewal</h2><br>
+      <p style="font-size:20px;" >Pumili ng serbisyo at punan ang mga detalye sa ibaba.</p>
+    </div>
+
+    <form id="applicationForm">
+      <div class="form-group">
+        <label for="serviceType">Anong serbisyo ang kailangan?</label>
+        <select id="serviceType" onchange="updateRequirements()" required>
+          <option value="" disabled selected>Pumili dito:</option>
+          <option value="new_id">Bagong Senior Citizen ID (New Application)</option>
+          <option value="renew_id">Renewal ng Senior Citizen ID (Expired/Lost)</option>
+          <option value="purchase_booklet">Purchase Booklet (Medicine/Grocery)</option>
+          <option value="social_pension">Social Pension Application</option>
+          <option value="certification">Barangay/OSCA Certification</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="fullName">Buong Pangalan</label>
+        <input type="text" id="fullName" placeholder="Juan Dela Cruz" required>
+      </div>
+
+      <div id="dynamicFields">
+        </div>
+
+      <div class="form-group">
+        <label id="uploadLabel">Upload ng mga Requirements</label><br>
+        <p id="reqList" class="doc-info" style="font-size:20px;">Mangyaring pumili muna ng serbisyo para makita ang requirements.</p><br>
+        <div class="upload-area">
+          <i class="fas fa-camera" style="font-size: 24px; color: #0d47a1;"></i><br>
+          <input type="file" id="fileUpload" multiple style="margin-top: 10px;">
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">I-sumite ang Application</button>
+    </form>
+  </div>
+</div>
+  
+  <footer class="footer">
+  <div class="footer-main">
+    <div class="footer-container">
+      <!-- Brand Column -->
+      <div class="footer-brand">
+        <div class="footer-brand-header">
+          <div class="footer-logo-circle">
+  <img src="logo2.png" alt="Kalinga Logo" class="footer-logo-img">
+</div>
+          <div class="footer-brand-text">
+            <span class="footer-brand-kalinga">Kalinga</span><br>
+            <span class="footer-brand-senior">Senior</span>
+            <span class="footer-brand-portal">Portal</span>
+          </div>
+        </div>
+        <p class="footer-description">
+          Binibigyang-kapangyarihan ang mga senior citizen sa pamamagitan ng ligtas na pag-iimbak ng mga dokumento, madaling pag-access sa mga benepisyo, at dedikadong suporta.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social-link"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="footer-social-link"><i class="fas fa-phone"></i></a>
+        </div>
+      </div>
+      <!-- Quick Links -->
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-link-list">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="store.html" class="footer-link">Secure Storage</a></li>
+          <li><a href="apply.html" class="footer-link">Apply & Renew</a></li>
+          <li><a href="pay.html" class="footer-link">Pay Online</a></li>
+          <li><a href="dis.html" class="footer-link">Discounts & Benefits</a></li>
+          <li><a href="faq.html" class="footer-link">FAQ & Guides</a></li>
+        </ul>
+      </div>
+      <!-- Information -->
+      <div>
+        <h4 class="footer-heading">Information</h4>
+        <ul class="footer-link-list">
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+          <li><a href="services.html" class="footer-link">Services</a></li>
+          <li><a href="account.html" class="footer-link">Account</a></li>
+          <li><a href="setting.html" class="footer-link">Settings</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div>
+        <h4 class="footer-heading">Contact Us</h4>
+        <ul class="footer-contact-list">
+          <li class="footer-contact-item">
+            <i class="fas fa-mobile-alt footer-contact-icon"></i>
+            <span class="footer-contact-text">0917-123-4567</span>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fas fa-phone footer-contact-icon"></i>
+            <span class="footer-contact-text">0928-456-7890</span>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fas fa-tty footer-contact-icon"></i>
+            <span class="footer-contact-text">(044) 812-3456</span>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fas fa-envelope footer-contact-icon"></i>
+            <span class="footer-contact-text">kalingaseniorportal@gmail.com</span>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fas fa-map-marker-alt footer-contact-icon"></i>
+            <span class="footer-contact-text">San Antonio, Nueva Ecija</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-copyright">
+    <div class="footer-copyright-inner">
+      © 2026 Kalinga Senior Portal. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+  <script>
+  function updateRequirements() {
+    const service = document.getElementById('serviceType').value;
+    const reqList = document.getElementById('reqList');
+    const dynamicFields = document.getElementById('dynamicFields');
+    
+    // Reset dynamic fields
+    dynamicFields.innerHTML = '';
+
+    if (service === 'new_id') {
+      reqList.innerHTML = "Requirements: 1x1 Photo, Birth Certificate, at Valid Government ID.";
+    } 
+    else if (service === 'renew_id') {
+      reqList.innerHTML = "Requirements: Lumang ID (kung nawala: Affidavit of Loss) at 1x1 Photo.";
+      dynamicFields.innerHTML = `
+        <div class="form-group">
+          <label>Lumang ID Number (kung mayroon)</label>
+          <input type="text" placeholder="Hal: 12-3456-789">
+        </div>`;
+    } 
+    else if (service === 'purchase_booklet') {
+      reqList.innerHTML = "Requirements: Senior Citizen ID at Brgy. Certificate.";
+    }
+    else if (service === 'social_pension') {
+      reqList.innerHTML = "Requirements: Indigency Certificate at Photocopy ng Senior ID.";
+    }
+  }
+
+  document.getElementById('applicationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Matagumpay na naisumite ang inyong application! Pakihintay ang tawag o mensahe mula sa OSCA.');
+  });
+</script>
+</body>
+</html>
